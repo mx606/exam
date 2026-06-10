@@ -19,7 +19,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             background: #fef9e8;
             border-radius: 30px;
@@ -137,7 +137,7 @@
             color: #3a4a38;
         }
 
-        input[type="radio"], input[type="text"] {
+        input[type="radio"], input[type="text"], textarea {
             margin-left: 8px;
         }
 
@@ -147,13 +147,21 @@
             margin-top: 8px;
         }
 
-        .fill-input {
-            width: 250px;
-            padding: 8px 12px;
+        .fill-input, .essay-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 15px;
             border-radius: 25px;
             border: 1px solid #c9a04b;
             font-family: 'Cairo', sans-serif;
             background: #fffef5;
+            font-size: 0.95rem;
+        }
+
+        .essay-input {
+            max-width: 100%;
+            min-height: 80px;
+            resize: vertical;
         }
 
         /* أزرار التحكم */
@@ -222,9 +230,27 @@
             background: #2c6e46;
             padding: 15px;
             border-radius: 20px;
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
             text-align: right;
+        }
+
+        .details ul {
+            list-style: none;
+        }
+
+        .details li {
+            margin-bottom: 12px;
+            border-bottom: 1px solid #5a9e7a;
+            padding: 8px;
+        }
+
+        .essay-feedback {
+            background: #f0e6d2;
+            color: #2d3e2b;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 20px;
         }
 
         footer {
@@ -241,7 +267,10 @@
                 padding: 15px;
             }
             .fill-input {
-                width: 180px;
+                max-width: 100%;
+            }
+            .section-title {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -267,7 +296,7 @@
             <div class="section">
                 <div class="section-title">📌 أولاً: أسئلة الاختيار من متعدد (30 سؤالاً)</div>
 
-                <!-- س1 -->
+                <!-- الأسئلة 1-30 -->
                 <div class="question-card" data-correct="B" data-type="mcq">
                     <div class="question-text">1. ما المراد بالنظام الاجتماعي الإسلامي؟</div>
                     <div class="options">
@@ -277,71 +306,39 @@
                         <div class="option"><input type="radio" name="q1" value="D"> د) القواعد العرفية المتوارثة</div>
                     </div>
                 </div>
-                <!-- س2 -->
-                <div class="question-card" data-correct="B" data-type="mcq">
-                    <div class="question-text">2. من أول من فرض الخراج في الإسلام؟</div>
-                    <div class="options"><div class="option"><input type="radio" name="q2" value="A"> أ) أبو بكر الصديق</div><div class="option"><input type="radio" name="q2" value="B"> ب) عمر بن الخطاب</div><div class="option"><input type="radio" name="q2" value="C"> ج) عثمان بن عفان</div><div class="option"><input type="radio" name="q2" value="D"> د) علي بن أبي طالب</div></div>
-                </div>
-                <!-- س3 -->
+                <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">2. من أول من فرض الخراج في الإسلام؟</div><div class="options"><div class="option"><input type="radio" name="q2" value="A"> أ) أبو بكر الصديق</div><div class="option"><input type="radio" name="q2" value="B"> ب) عمر بن الخطاب</div><div class="option"><input type="radio" name="q2" value="C"> ج) عثمان بن عفان</div><div class="option"><input type="radio" name="q2" value="D"> د) علي بن أبي طالب</div></div></div>
                 <div class="question-card" data-correct="C" data-type="mcq"><div class="question-text">3. ما حكم الزواج لمن قدر عليه وخشي العنت؟</div><div class="options"><div class="option"><input type="radio" name="q3" value="A"> أ) مندوب</div><div class="option"><input type="radio" name="q3" value="B"> ب) مباح</div><div class="option"><input type="radio" name="q3" value="C"> ج) واجب</div><div class="option"><input type="radio" name="q3" value="D"> د) محرم</div></div></div>
-                <!-- س4 -->
                 <div class="question-card" data-correct="C" data-type="mcq"><div class="question-text">4. كم مقدار زكاة الذهب إذا بلغ النصاب؟</div><div class="options"><div class="option"><input type="radio" name="q4" value="A"> أ) العشر كاملاً</div><div class="option"><input type="radio" name="q4" value="B"> ب) نصف العشر</div><div class="option"><input type="radio" name="q4" value="C"> ج) ربع العشر</div><div class="option"><input type="radio" name="q4" value="D"> د) عشر العشر</div></div></div>
-                <!-- س5 -->
                 <div class="question-card" data-correct="C" data-type="mcq"><div class="question-text">5. ما هو نصاب الفضة في الزكاة؟</div><div class="options"><div class="option"><input type="radio" name="q5" value="A"> أ) 100 درهم</div><div class="option"><input type="radio" name="q5" value="B"> ب) 140 درهماً</div><div class="option"><input type="radio" name="q5" value="C"> ج) 200 درهم</div><div class="option"><input type="radio" name="q5" value="D"> د) 250 درهماً</div></div></div>
-                <!-- س6 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">6. من أول خليفة ولى السلطة القضائية؟</div><div class="options"><div class="option"><input type="radio" name="q6" value="A"> أ) أبو بكر الصديق</div><div class="option"><input type="radio" name="q6" value="B"> ب) عمر بن الخطاب</div><div class="option"><input type="radio" name="q6" value="C"> ج) عثمان بن عفان</div><div class="option"><input type="radio" name="q6" value="D"> د) علي بن أبي طالب</div></div></div>
-                <!-- س7 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">7. ما معنى "القاتل لا يرث"؟</div><div class="options"><div class="option"><input type="radio" name="q7" value="A"> أ) حكم إجماعي</div><div class="option"><input type="radio" name="q7" value="B"> ب) حكم بالقياس</div><div class="option"><input type="radio" name="q7" value="C"> ج) حكم بالاستحسان</div><div class="option"><input type="radio" name="q7" value="D"> د) حكم بالمصلحة المرسلة</div></div></div>
-                <!-- س8 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">8. كم مدة الهجر الجائزة بين المسلمين؟</div><div class="options"><div class="option"><input type="radio" name="q8" value="A"> أ) يوم واحد</div><div class="option"><input type="radio" name="q8" value="B"> ب) ثلاثة أيام</div><div class="option"><input type="radio" name="q8" value="C"> ج) سبعة أيام</div><div class="option"><input type="radio" name="q8" value="D"> د) عشرة أيام</div></div></div>
-                <!-- س9 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">9. ما هي عدة المتوفى عنها زوجها؟</div><div class="options"><div class="option"><input type="radio" name="q9" value="A"> أ) ثلاثة أشهر</div><div class="option"><input type="radio" name="q9" value="B"> ب) أربعة أشهر وعشراً</div><div class="option"><input type="radio" name="q9" value="C"> ج) ستة أشهر</div><div class="option"><input type="radio" name="q9" value="D"> د) سنة كاملة</div></div></div>
-                <!-- س10 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">10. ما هو الفرق الرئيسي بين الفيء والغنيمة؟</div><div class="options"><div class="option"><input type="radio" name="q10" value="A"> أ) الفيء للمقاتلين فقط، والغنيمة للدولة</div><div class="option"><input type="radio" name="q10" value="B"> ب) الفيء بغير قتال، والغنيمة عنوة وقتال</div><div class="option"><input type="radio" name="q10" value="C"> ج) الفيء يُخمس، والغنيمة لا تُخمس</div><div class="option"><input type="radio" name="q10" value="D"> د) الفيء خاص بالنبي فقط</div></div></div>
-                <!-- س11 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">11. من الذي لا تجب عليه الجزية؟</div><div class="options"><div class="option"><input type="radio" name="q11" value="A"> أ) الرجل الحر العاقل</div><div class="option"><input type="radio" name="q11" value="B"> ب) المرأة والصبي والمجنون والعبد</div><div class="option"><input type="radio" name="q11" value="C"> ج) اليهودي والنصراني</div><div class="option"><input type="radio" name="q11" value="D"> د) المجوسي</div></div></div>
-                <!-- س12 -->
                 <div class="question-card" data-correct="C" data-type="mcq"><div class="question-text">12. ما هي المرتبة الأولى في تغيير المنكر؟</div><div class="options"><div class="option"><input type="radio" name="q12" value="A"> أ) التغيير بالقلب</div><div class="option"><input type="radio" name="q12" value="B"> ب) التغيير باللسان</div><div class="option"><input type="radio" name="q12" value="C"> ج) التغيير باليد</div><div class="option"><input type="radio" name="q12" value="D"> د) الدعاء على فاعله</div></div></div>
-                <!-- س13 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">13. ما معنى "القتات" الذي لا يدخل الجنة؟</div><div class="options"><div class="option"><input type="radio" name="q13" value="A"> أ) آكل الربا</div><div class="option"><input type="radio" name="q13" value="B"> ب) النمام الذي ينقل الكلام بين الناس</div><div class="option"><input type="radio" name="q13" value="C"> ج) تارك الصلاة</div><div class="option"><input type="radio" name="q13" value="D"> د) عاق الوالدين</div></div></div>
-                <!-- س14 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">14. كم مرة يجوز الطلاق الرجعي؟</div><div class="options"><div class="option"><input type="radio" name="q14" value="A"> أ) مرة واحدة</div><div class="option"><input type="radio" name="q14" value="B"> ب) مرتين</div><div class="option"><input type="radio" name="q14" value="C"> ج) ثلاث مرات</div><div class="option"><input type="radio" name="q14" value="D"> د) أربع مرات</div></div></div>
-                <!-- س15 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">15. ما حكم الضريبة عن الزكاة؟</div><div class="options"><div class="option"><input type="radio" name="q15" value="A"> أ) تجزئ في كل الأحوال</div><div class="option"><input type="radio" name="q15" value="B"> ب) لا تجزئ أبداً لأن الزكاة عبادة</div><div class="option"><input type="radio" name="q15" value="C"> ج) تجزئ إذا كان المال قليلاً</div><div class="option"><input type="radio" name="q15" value="D"> د) تجزئ بإذن الحاكم</div></div></div>
-                <!-- س16 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">16. ما هي الوسيلة التي حث عليها النبي ﷺ لمن لم يستطع الزواج؟</div><div class="options"><div class="option"><input type="radio" name="q16" value="A"> أ) السفر</div><div class="option"><input type="radio" name="q16" value="B"> ب) الصوم</div><div class="option"><input type="radio" name="q16" value="C"> ج) الصدقة</div><div class="option"><input type="radio" name="q16" value="D"> د) الاعتكاف</div></div></div>
-                <!-- س17 -->
                 <div class="question-card" data-correct="A" data-type="mcq"><div class="question-text">17. ما معنى "الركاز"؟</div><div class="options"><div class="option"><input type="radio" name="q17" value="A"> أ) المال المدفون في الأرض من عهد الجاهلية</div><div class="option"><input type="radio" name="q17" value="B"> ب) الزكاة المفروضة</div><div class="option"><input type="radio" name="q17" value="C"> ج) الخراج على الأرض</div><div class="option"><input type="radio" name="q17" value="D"> د) الجزية على الذميين</div></div></div>
-                <!-- س18 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">18. من أول من وضع نظام المقاسمة في جباية الخراج؟</div><div class="options"><div class="option"><input type="radio" name="q18" value="A"> أ) أبو بكر الصديق</div><div class="option"><input type="radio" name="q18" value="B"> ب) عمر بن الخطاب</div><div class="option"><input type="radio" name="q18" value="C"> ج) عثمان بن عفان</div><div class="option"><input type="radio" name="q18" value="D"> د) معاوية بن أبي سفيان</div></div></div>
-                <!-- س19 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">19. ما هو حكم طلب القضاء لمن هو أهل له فقير وله عيال؟</div><div class="options"><div class="option"><input type="radio" name="q19" value="A"> أ) واجب</div><div class="option"><input type="radio" name="q19" value="B"> ب) مباح</div><div class="option"><input type="radio" name="q19" value="C"> ج) مكروه</div><div class="option"><input type="radio" name="q19" value="D"> د) حرام</div></div></div>
-                <!-- س20 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">20. ما معنى "المحتسب عليه" في الحسبة؟</div><div class="options"><div class="option"><input type="radio" name="q20" value="A"> أ) من ينصب المحتسب</div><div class="option"><input type="radio" name="q20" value="B"> ب) الشخص الذي يُوجه إليه الأمر بالمعروف والنهي عن المنكر</div><div class="option"><input type="radio" name="q20" value="C"> ج) المكان الذي تجري فيه الحسبة</div><div class="option"><input type="radio" name="q20" value="D"> د) المال الذي تُخرج منه الزكاة</div></div></div>
-                <!-- س21 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">21. كم بلغ خراج الفدان المنزرع قمحاً في عهد عمر بن الخطاب؟</div><div class="options"><div class="option"><input type="radio" name="q21" value="A"> أ) عشرة دراهم</div><div class="option"><input type="radio" name="q21" value="B"> ب) أربعة عشر درهماً</div><div class="option"><input type="radio" name="q21" value="C"> ج) عشرون درهماً</div><div class="option"><input type="radio" name="q21" value="D"> د) أربعة وعشرون درهماً</div></div></div>
-                <!-- س22 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">22. ما هي مدة حضانة الأم للولد الذكر؟</div><div class="options"><div class="option"><input type="radio" name="q22" value="A"> أ) حتى الخامسة</div><div class="option"><input type="radio" name="q22" value="B"> ب) حتى السابعة</div><div class="option"><input type="radio" name="q22" value="C"> ج) حتى العاشرة</div><div class="option"><input type="radio" name="q22" value="D"> د) حتى البلوغ</div></div></div>
-                <!-- س23 -->
                 <div class="question-card" data-correct="C" data-type="mcq"><div class="question-text">23. ما هي المرتبة العليا في المواساة بالمال عند الغزالي؟</div><div class="options"><div class="option"><input type="radio" name="q23" value="A"> أ) أن تعطيه من فضلة مالك</div><div class="option"><input type="radio" name="q23" value="B"> ب) أن تنزله منزلة نفسك</div><div class="option"><input type="radio" name="q23" value="C"> ج) أن تؤثره على نفسك</div><div class="option"><input type="radio" name="q23" value="D"> د) أن تقرضه بالربا</div></div></div>
-                <!-- س24 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">24. ما حكم من قال "لا فرق بين الصلاة والزكاة" في عهد أبي بكر؟</div><div class="options"><div class="option"><input type="radio" name="q24" value="A"> أ) يُعذر لجهله</div><div class="option"><input type="radio" name="q24" value="B"> ب) يُقاتل</div><div class="option"><input type="radio" name="q24" value="C"> ج) يُستتاب فقط</div><div class="option"><input type="radio" name="q24" value="D"> د) يُترك حتى يتوب</div></div></div>
-                <!-- س25 -->
                 <div class="question-card" data-correct="A" data-type="mcq"><div class="question-text">25. ما هو الفرق بين الكنز والادخار؟</div><div class="options"><div class="option"><input type="radio" name="q25" value="A"> أ) الكنز تعطيل للمال، والادخار إمساك لحاجة مستقبلية</div><div class="option"><input type="radio" name="q25" value="B"> ب) لا فرق بينهما</div><div class="option"><input type="radio" name="q25" value="C"> ج) الكنز حرام والادخار حلال مطلقاً</div><div class="option"><input type="radio" name="q25" value="D"> د) الكنز للمال القليل والادخار للكثير</div></div></div>
-                <!-- س26 -->
                 <div class="question-card" data-correct="D" data-type="mcq"><div class="question-text">26. من الذي قال: "ألن أقضي يوماً بالحق أحب إلي من عبادة سبعين عاماً"؟</div><div class="options"><div class="option"><input type="radio" name="q26" value="A"> أ) أبو بكر الصديق</div><div class="option"><input type="radio" name="q26" value="B"> ب) عمر بن الخطاب</div><div class="option"><input type="radio" name="q26" value="C"> ج) عثمان بن عفان</div><div class="option"><input type="radio" name="q26" value="D"> د) عبد الله بن مسعود</div></div></div>
-                <!-- س27 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">27. ما هي الغاية السامية للمال في الإسلام؟</div><div class="options"><div class="option"><input type="radio" name="q27" value="A"> أ) التكاثر والتفاخر</div><div class="option"><input type="radio" name="q27" value="B"> ب) طلب الآخرة والجهاد في سبيل الله</div><div class="option"><input type="radio" name="q27" value="C"> ج) الادخار للورثة فقط</div><div class="option"><input type="radio" name="q27" value="D"> د) شراء المناصب</div></div></div>
-                <!-- س28 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">28. ما هو شرط صحة الهبة؟</div><div class="options"><div class="option"><input type="radio" name="q28" value="A"> أ) الإيجاب والقبول فقط</div><div class="option"><input type="radio" name="q28" value="B"> ب) الإيجاب والقبول والقبض</div><div class="option"><input type="radio" name="q28" value="C"> ج) الكتابة والتوثيق</div><div class="option"><input type="radio" name="q28" value="D"> د) وجود الشهود فقط</div></div></div>
-                <!-- س29 -->
                 <div class="question-card" data-correct="B" data-type="mcq"><div class="question-text">29. متى يسقط حق النفقة عن الزوج؟</div><div class="options"><div class="option"><input type="radio" name="q29" value="A"> أ) إذا مرضت الزوجة</div><div class="option"><input type="radio" name="q29" value="B"> ب) إذا نشزت الزوجة وخرجت عن طاعته</div><div class="option"><input type="radio" name="q29" value="C"> ج) إذا سافرت بإذنه</div><div class="option"><input type="radio" name="q29" value="D"> د) لا يسقط أبداً</div></div></div>
-                <!-- س30 -->
                 <div class="question-card" data-correct="C" data-type="mcq"><div class="question-text">30. ما معنى قول النبي ﷺ "من غش فليس مني"؟</div><div class="options"><div class="option"><input type="radio" name="q30" value="A"> أ) في العبادة فقط</div><div class="option"><input type="radio" name="q30" value="B"> ب) في البيع والطعام خاصة</div><div class="option"><input type="radio" name="q30" value="C"> ج) في كل شيء</div><div class="option"><input type="radio" name="q30" value="D"> د) في الحرب فقط</div></div></div>
             </div>
 
             <!-- ========================================================= -->
-            <!-- القسم الثاني: صح أم خطأ (10 أسئلة نموذجية) -->
+            <!-- القسم الثاني: صح أم خطأ (10 أسئلة) -->
             <!-- ========================================================= -->
             <div class="section">
                 <div class="section-title">🔍 ثانياً: صح أم خطأ (10 أسئلة)</div>
@@ -352,36 +349,38 @@
                 <div class="question-card" data-correct="true" data-type="tf"><div class="question-text">35. الزواج حرام على من خشي الظلم لزوجته.</div><div class="truefalse-group"><label><input type="radio" name="q35" value="true"> صح</label> <label><input type="radio" name="q35" value="false"> خطأ</label></div></div>
                 <div class="question-card" data-correct="false" data-type="tf"><div class="question-text">36. المال في الإسلام غاية وليس وسيلة.</div><div class="truefalse-group"><label><input type="radio" name="q36" value="true"> صح</label> <label><input type="radio" name="q36" value="false"> خطأ</label></div></div>
                 <div class="question-card" data-correct="false" data-type="tf"><div class="question-text">37. تجب الجزية على المرأة المسيحية.</div><div class="truefalse-group"><label><input type="radio" name="q37" value="true"> صح</label> <label><input type="radio" name="q37" value="false"> خطأ</label></div></div>
-                <div class="question-card" data-correct="true" data-type="tf"><div class="question-text">38. الغنيمة تخمس ثم يقسم أرب                <div class="question-card" data-correct="true" data-type="tf"><div class="question-text">38. الغنيمة تخمس ثم يقسم أربعة أخماسها على المقاتلين.</div><div class="truefalse-group"><label><input type="radio" name="q38" value="true"> ✅ صح</label> <label><input type="radio" name="q38" value="false"> ❌ خطأ</label></div></div>
+                <div class="question-card" data-correct="true" data-type="tf"><div class="question-text">38. الغنيمة تخمس ثم يقسم أربعة أخماسها على المقاتلين.</div><div class="truefalse-group"><label><input type="radio" name="q38" value="true"> صح</label> <label><input type="radio" name="q38" value="false"> خطأ</label></div></div>
                 <div class="question-card" data-correct="false" data-type="tf"><div class="question-text">39. الفيء يختص به النبي ﷺ وحده.</div><div class="truefalse-group"><label><input type="radio" name="q39" value="true"> صح</label> <label><input type="radio" name="q39" value="false"> خطأ</label></div></div>
                 <div class="question-card" data-correct="false" data-type="tf"><div class="question-text">40. يجوز للقاضي أن يتعرض للمنكر بغير خصم.</div><div class="truefalse-group"><label><input type="radio" name="q40" value="true"> صح</label> <label><input type="radio" name="q40" value="false"> خطأ</label></div></div>
             </div>
 
             <!-- ========================================================= -->
-            <!-- القسم الثالث: إكمال الفراغات (5 أسئلة نموذجية) -->
+            <!-- القسم الثالث: إكمال الفراغات (5 أسئلة) -->
             <!-- ========================================================= -->
             <div class="section">
                 <div class="section-title">✍️ ثالثاً: أكمل الفراغات (5 أسئلة)</div>
-                <div class="question-card" data-correct="العلة" data-type="fill">
-                    <div class="question-text">41. أركان القياس الأربعة هي: الأصل، والفرع، وحكم الأصل، و ________</div>
-                    <input type="text" name="q41" class="fill-input" placeholder="اكتب الإجابة هنا">
-                </div>
-                <div class="question-card" data-correct="الجسد" data-type="fill">
-                    <div class="question-text">42. قال النبي ﷺ: "مثل المؤمنين في توادهم وتراحمهم وتعاطفهم مثل ________"</div>
-                    <input type="text" name="q42" class="fill-input" placeholder="اكتب الإجابة هنا">
-                </div>
-                <div class="question-card" data-correct="المعاملة بالحسنى" data-type="fill">
-                    <div class="question-text">43. حقوق الزوجة على الزوج ثلاثة: المهر، والنفقة، و ________</div>
-                    <input type="text" name="q43" class="fill-input" placeholder="اكتب الإجابة هنا">
-                </div>
-                <div class="question-card" data-correct="ثلاثة قروء" data-type="fill">
-                    <div class="question-text">44. قال تعالى: ﴿وَالْمُطَلَّقَاتُ يَتَرَبَّصْنَ بِأَنْفُسِهِنَّ ________﴾</div>
-                    <input type="text" name="q44" class="fill-input" placeholder="اكتب الإجابة هنا">
-                </div>
-                <div class="question-card" data-correct="أربعة أشهر وعشرا" data-type="fill">
-                    <div class="question-text">45. عدة المتوفى عنها زوجها: ________</div>
-                    <input type="text" name="q45" class="fill-input" placeholder="اكتب الإجابة هنا">
-                </div>
+                <div class="question-card" data-correct="العلة" data-type="fill"><div class="question-text">41. أركان القياس الأربعة هي: الأصل، والفرع، وحكم الأصل، و ________</div><input type="text" name="q41" class="fill-input" placeholder="اكتب الإجابة هنا"></div>
+                <div class="question-card" data-correct="الجسد" data-type="fill"><div class="question-text">42. قال النبي ﷺ: "مثل المؤمنين في توادهم وتراحمهم وتعاطفهم مثل ________"</div><input type="text" name="q42" class="fill-input" placeholder="اكتب الإجابة هنا"></div>
+                <div class="question-card" data-correct="المعاملة بالحسنى" data-type="fill"><div class="question-text">43. حقوق الزوجة على الزوج ثلاثة: المهر، والنفقة، و ________</div><input type="text" name="q43" class="fill-input" placeholder="اكتب الإجابة هنا"></div>
+                <div class="question-card" data-correct="ثلاثة قروء" data-type="fill"><div class="question-text">44. قال تعالى: ﴿وَالْمُطَلَّقَاتُ يَتَرَبَّصْنَ بِأَنْفُسِهِنَّ ________﴾</div><input type="text" name="q44" class="fill-input" placeholder="اكتب الإجابة هنا"></div>
+                <div class="question-card" data-correct="أربعة أشهر وعشرا" data-type="fill"><div class="question-text">45. عدة المتوفى عنها زوجها: ________</div><input type="text" name="q45" class="fill-input" placeholder="اكتب الإجابة هنا"></div>
+            </div>
+
+            <!-- ========================================================= -->
+            <!-- القسم الرابع: أسئلة مقالية (10 أسئلة - مراجعة يدوية) -->
+            <!-- ========================================================= -->
+            <div class="section">
+                <div class="section-title">📝 رابعاً: أسئلة مقالية (10 أسئلة - تصحيح يدوي)</div>
+                <div class="question-card" data-type="essay"><div class="question-text">46. عرف الإجماع لغة واصطلاحاً، ثم اذكر دليلاً من القرآن على حجيته.</div><textarea name="q46" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                <div class="question-card" data-type="essay"><div class="question-text">47. اذكر خمسة من حقوق المسلم على المسلم مع الاستدلال.</div><textarea name="q47" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                <div class="question-card" data-type="essay"><div class="question-text">48. ما هي فوائد الزواج؟ اذكر أربعاً منها.</div><textarea name="q48" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                <div class="question-card" data-type="essay"><div class="question-text">49. قارن بين الخراج والجزية من ثلاثة أوجه.</div><textarea name="q49" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                <div class="question-card" data-type="essay"><div class="question-text">50. اذكر الفروقات بين القضاء والحسبة في الإسلام.</div><textarea name="q50" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                <div class="question-card" data-type="essay"><div class="question-text">51. ما هي شروط المحتسب؟ اذكر خمسة منها.</div><textarea name="q51" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                <div class="question-card" data-type="essay"><div class="question-text">52. كيف رد الإسلام على شبهة ظلم المرأة في الميراث؟</div><textarea name="q52" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                <div class="question-card" data-type="essay"><div class="question-text">53. ما هي موارد الدولة في الإسلام؟ اذكر خمسة منها.</div><textarea name="q53" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                <div class="question-card" data-type="essay"><div class="question-text">54. اذكر مراتب الإنكار في الحسبة مع بيان حكم كل مرتبة.</div><textarea name="q54" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
+                <div class="question-card" data-type="essay"><div class="question-text">55. كيف جمع الإسلام بين عمل الدنيا والآخرة من خلال نظام السوق والمسجد؟</div><textarea name="q55" class="essay-input" placeholder="اكتب إجابتك هنا..."></textarea></div>
             </div>
 
             <!-- أزرار التحكم -->
@@ -396,6 +395,7 @@
             <div class="score" id="scoreDisplay">0 / 0</div>
             <div id="percentageDisplay" style="font-size:1.2rem; margin:10px 0;"></div>
             <div id="detailsDisplay" class="details"></div>
+            <div id="essayFeedback" class="essay-feedback"></div>
         </div>
     </div>
     <footer>
@@ -405,12 +405,11 @@
 
 <script>
     function submitQuiz() {
-        // جمع الإجابات
         let totalQuestions = 0;
         let correctCount = 0;
         let resultDetails = [];
 
-        // 1. معالجة أسئلة الاختيار من متعدد (q1 إلى q30)
+        // 1. أسئلة الاختيار من متعدد (q1 - q30)
         for (let i = 1; i <= 30; i++) {
             const radios = document.getElementsByName(`q${i}`);
             let selectedValue = null;
@@ -420,26 +419,24 @@
                     break;
                 }
             }
-            // استخراج الإجابة الصحيحة من data-correct الموجود في العنصر الأب (question-card)
             const questionDiv = document.querySelector(`input[name="q${i}"]`)?.closest('.question-card');
             if (questionDiv) {
                 totalQuestions++;
                 const correct = questionDiv.getAttribute('data-correct');
                 const isCorrect = (selectedValue === correct);
                 if (isCorrect) correctCount++;
-                // تخزين التفاصيل
                 const qText = questionDiv.querySelector('.question-text')?.innerText || `سؤال ${i}`;
+                const optionMap = { 'A': 'أ', 'B': 'ب', 'C': 'ج', 'D': 'د' };
                 resultDetails.push({
-                    num: i,
-                    text: qText.substring(0, 80),
-                    userAnswer: selectedValue ? (selectedValue === 'A' ? 'أ' : (selectedValue === 'B' ? 'ب' : (selectedValue === 'C' ? 'ج' : 'د'))) : 'لم يجب',
-                    correct: correct === 'A' ? 'أ' : (correct === 'B' ? 'ب' : (correct === 'C' ? 'ج' : 'د')),
+                    num: i, text: qText.substring(0, 80),
+                    userAnswer: selectedValue ? (optionMap[selectedValue] || selectedValue) : 'لم يجب',
+                    correct: optionMap[correct] || correct,
                     status: isCorrect
                 });
             }
         }
 
-        // 2. معالجة صح/خطأ (q31 إلى q40)
+        // 2. صح/خطأ (q31 - q40)
         for (let i = 31; i <= 40; i++) {
             const radios = document.getElementsByName(`q${i}`);
             let selected = null;
@@ -452,13 +449,12 @@
             const questionDiv = document.querySelector(`input[name="q${i}"]`)?.closest('.question-card');
             if (questionDiv) {
                 totalQuestions++;
-                const correct = questionDiv.getAttribute('data-correct'); // "true" أو "false"
+                const correct = questionDiv.getAttribute('data-correct');
                 const isCorrect = (selected === correct);
                 if (isCorrect) correctCount++;
                 const qText = questionDiv.querySelector('.question-text')?.innerText || `سؤال ${i}`;
                 resultDetails.push({
-                    num: i,
-                    text: qText.substring(0, 80),
+                    num: i, text: qText.substring(0, 80),
                     userAnswer: selected === 'true' ? 'صح' : (selected === 'false' ? 'خطأ' : 'لم يجب'),
                     correct: correct === 'true' ? 'صح' : 'خطأ',
                     status: isCorrect
@@ -466,28 +462,22 @@
             }
         }
 
-        // 3. معالجة إكمال الفراغات (q41 إلى q45)
-        const fillCorrectAnswers = {
-            q41: 'العلة',
-            q42: 'الجسد',
-            q43: 'المعاملة بالحسنى',
-            q44: 'ثلاثة قروء',
-            q45: 'أربعة أشهر وعشرا'
+        // 3. إكمال الفراغات (q41 - q45)
+        const fillCorrect = {
+            q41: 'العلة', q42: 'الجسد', q43: 'المعاملة بالحسنى', q44: 'ثلاثة قروء', q45: 'أربعة أشهر وعشرا'
         };
         for (let i = 41; i <= 45; i++) {
             const input = document.querySelector(`input[name="q${i}"]`);
             if (input) {
                 totalQuestions++;
                 const userAnswer = input.value.trim();
-                const correctAnswer = fillCorrectAnswers[`q${i}`];
-                // مقارنة بسيطة (يمكن توسيعها لتقبل مرادفات)
+                const correctAnswer = fillCorrect[`q${i}`];
                 const isCorrect = (userAnswer.toLowerCase() === correctAnswer.toLowerCase());
                 if (isCorrect) correctCount++;
                 const questionDiv = input.closest('.question-card');
                 const qText = questionDiv?.querySelector('.question-text')?.innerText || `سؤال ${i}`;
                 resultDetails.push({
-                    num: i,
-                    text: qText.substring(0, 80),
+                    num: i, text: qText.substring(0, 80),
                     userAnswer: userAnswer || '(فارغ)',
                     correct: correctAnswer,
                     status: isCorrect
@@ -495,41 +485,43 @@
             }
         }
 
-        // عرض النتيجة
+        // عرض النتيجة للأسئلة الآلية
         const percentage = Math.round((correctCount / totalQuestions) * 100);
         document.getElementById('scoreDisplay').innerHTML = `${correctCount} / ${totalQuestions}`;
-        document.getElementById('percentageDisplay').innerHTML = `✅ نسبة الإجابة الصحيحة: ${percentage}%`;
+        document.getElementById('percentageDisplay').innerHTML = `✅ نسبة الإجابة الصحيحة (أسئلة موضوعية): ${percentage}%`;
         
-        // عرض التفاصيل
-        let detailsHtml = '<h3>📋 تفاصيل الإجابات:</h3><ul style="list-style:none; text-align:right;">';
+        let detailsHtml = '<h3>📋 تفاصيل الإجابات (موضوعي):</h3><ul>';
         for (let det of resultDetails) {
             const statusIcon = det.status ? '✅' : '❌';
-            detailsHtml += `<li style="margin-bottom:8px; border-bottom:1px solid #aaa; padding:5px;">${statusIcon} <strong>سؤال ${det.num}:</strong> ${det.text}<br>
-            <span style="color:#ffd966;">📝 إجابتك: ${det.userAnswer}</span> | 
-            <span style="color:#c9e085;">📖 الإجابة الصحيحة: ${det.correct}</span></li>`;
+            detailsHtml += `<li>${statusIcon} <strong>سؤال ${det.num}:</strong> ${det.text}<br>`;
+            detailsHtml += `<span style="color:#ffd966;">📝 إجابتك: ${det.userAnswer}</span> | `;
+            detailsHtml += `<span style="color:#c9e085;">📖 الصحيح: ${det.correct}</span></li>`;
         }
         detailsHtml += '</ul>';
         document.getElementById('detailsDisplay').innerHTML = detailsHtml;
         
-        // إظهار صندوق النتيجة
-        document.getElementById('resultBox').style.display = 'block';
+        // توجيه للأسئلة المقالية
+        document.getElementById('essayFeedback').innerHTML = `
+            <h3>✍️ الأسئلة المقالية (46-55)</h3>
+            <p>📌 هذه الأسئلة تتطلب مراجعة يدوية من قبل المصحح. يرجى مقارنة إجاباتك مع النماذج الموجودة في الملزمة.</p>
+            <p>💡 <strong>نموذج إجابة مختصرة للسؤال 46:</strong> الإجماع لغة: العزم على الشيء. اصطلاحاً: اتفاق أهل الحل والعقد من أمة محمد ﷺ على حكم. الدليل: ﴿وَمَنْ يُشَاقِقِ الرَّسُولَ...﴾</p>
+            <p>💡 <strong>نموذج إجابة للسؤال 47:</strong> من حقوق المسلم: تسليم عليه، تشميت العاطس، عيادة المريض، تشييع الجنازة، تحب له ما تحب لنفسك.</p>
+            <p>💡 <strong>نموذج إجابة للسؤال 48:</strong> فوائد الزواج: الولد، التحصن عن الشيطان، ترويح النفس، تفريغ القلب لتدبير المنزل.</p>
+            <p>📚 باقي النماذج موجودة في الملزمة (صفحات 41-55).</p>
+        `;
         
-        // تمرير سلس للنتيجة
+        document.getElementById('resultBox').style.display = 'block';
         document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function resetQuiz() {
-        // إعادة تعيين جميع حقول الإدخال
         const allRadios = document.querySelectorAll('input[type="radio"]');
         allRadios.forEach(radio => radio.checked = false);
-        
         const allInputs = document.querySelectorAll('input[type="text"]');
         allInputs.forEach(input => input.value = '');
-        
-        // إخفاء صندوق النتيجة
+        const allTextareas = document.querySelectorAll('textarea');
+        allTextareas.forEach(ta => ta.value = '');
         document.getElementById('resultBox').style.display = 'none';
-        
-        // تمرير للأعلى
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
